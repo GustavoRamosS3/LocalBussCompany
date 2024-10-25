@@ -1,0 +1,77 @@
+//ExibirCaminho.js
+import React, { useEffect, useState } from 'react';
+import { View, Text, ActivityIndicator, Image, Button } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import styles from './ExibirCaminhoStyle.js'
+
+const logo = require('../../../assets/L_Azul.png'); // Certifique-se de que o caminho está correto
+
+export default function ExibirCaminhoScreen({ route, navigation }) {
+  const [routePath, setRoutePath] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [routeColor, setRouteColor] = useState('#FF0000'); // Cor padrão
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (route.params?.routeData) {
+        const { path, routeColor } = route.params.routeData;
+        if (path && path.length > 0) {
+          setRoutePath(path);
+          setRouteColor(routeColor);
+        } else {
+          console.error('No valid location data found');
+        }
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+
+      return () => {
+        setRoutePath([]);
+        setRouteColor('#FF0000');
+        setLoading(true);
+      };
+    }, [route.params])
+  );
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  if (!route.params?.routeData) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>Nenhuma rota selecionada!</Text>
+        <Text style={styles.errorText}>Por favor, volte para a tela de "Listar Rotas" e selecione uma rota.</Text>
+        <Button
+          title="Voltar para Listar Rotas"
+          onPress={() => navigation.navigate('ListarRotas')}
+        />
+      </View>
+    );
+  }
+
+  if (routePath.length === 0) {
+    return (
+      <View style={styles.container}>
+        <Text>Erro ao carregar rota ou rota vazia</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.routeInfo}>Rota selecionada: {route.params.routeData.name}</Text>
+      <Text style={styles.routeInfo}>Cor da Rota: {routeColor}</Text>
+      <View style={styles.logoContainer}>
+        <Image source={logo} style={styles.logo} />
+      </View>
+    </View>
+  );
+}
+
+
