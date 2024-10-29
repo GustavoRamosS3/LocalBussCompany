@@ -5,7 +5,6 @@ import * as Location from 'expo-location';
 import { format } from 'date-fns';
 import { Picker } from '@react-native-picker/picker';
 import styles from './HomeStyle.js'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const logo = require('../../../assets/L_Azul.png'); // Atualize o caminho conforme necessário
 
@@ -17,7 +16,7 @@ const routeColors = {
   'São Roque/Bonanza': 'Laranja'
 };
 
-export default function Home({ navigation, route, setUsuarioLogado, resetLoginState }) {
+export default function Home({ navigation, route }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [timer, setTimer] = useState(0);
@@ -34,10 +33,10 @@ export default function Home({ navigation, route, setUsuarioLogado, resetLoginSt
   const nomeUsuario = route.params?.nomeUsuario || 'Usuário'; // Obtém o nome do usuário logado
 
   // Função para sair e voltar para a tela de login
-  const handleLogout = async () => {
+  const handleLogout = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Login' }], // Aqui especificamos a tela correta no navegador pai
+      routes: [{ name: 'Login' }],
     });
   };
 
@@ -122,51 +121,8 @@ export default function Home({ navigation, route, setUsuarioLogado, resetLoginSt
       locationSubscription.remove();
       setLocationSubscription(null);
     }
-
-    saveRoute();
     setTimer(0);
     setHasStarted(false);
-  };
-
-  const saveRoute = async () => {
-    if (routePath.length === 0) {
-      console.error('No coordinates recorded. Path is empty.');
-      return;
-    }
-
-    const routeId = Math.floor(Math.random() * 1000000); // Gera um número aleatório
-    const color = routeColors[routeName] || 'Preto'; // Define uma cor padrão
-    const routeData = {
-      routeId: routeId,
-      name: routeName,
-      color: color,
-      date: date,
-      path: routePath,
-      time: formatTime(timer),
-    };
-
-    try {
-      const response = await fetch('https://parseapi.back4app.com/classes/Rota', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Parse-Application-Id': 'QlUVf0spu3gUQPMifr8zOVmG3LCbYmsGiSdd62rI',
-          'X-Parse-REST-API-Key': 'xiUvBsGSYVF0H7iDSYum9MXekIatgY7xh8ghQu3N',
-        },
-        body: JSON.stringify(routeData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`Error: ${response.status} - ${response.statusText}: ${JSON.stringify(errorData)}`);
-      }
-
-      const data = await response.json();
-      console.log('Route saved successfully:', data);
-      setRoutePath([]);
-    } catch (error) {
-      console.error('Error saving route:', error.message || error);
-    }
   };
 
   const formatTime = (time) => {
@@ -193,9 +149,6 @@ export default function Home({ navigation, route, setUsuarioLogado, resetLoginSt
           <Text style={styles.buttonText}>Stop</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button} onPress={saveRoute}>
-        <Text style={styles.buttonText}>Gravar Nova Rota</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ListarRotas')}>
         <Text style={styles.buttonText}>Listar Rotas</Text>
       </TouchableOpacity>
@@ -233,5 +186,3 @@ export default function Home({ navigation, route, setUsuarioLogado, resetLoginSt
     </View>
   );
 }
-
-

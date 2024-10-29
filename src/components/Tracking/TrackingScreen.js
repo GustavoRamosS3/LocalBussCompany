@@ -9,8 +9,6 @@ const ROUTE_API_URL = 'https://parseapi.back4app.com/classes/LocAtual';
 const APP_ID = 'QlUVf0spu3gUQPMifr8zOVmG3LCbYmsGiSdd62rI';
 const REST_API_KEY = 'xiUvBsGSYVF0H7iDSYum9MXekIatgY7xh8ghQu3N';
 
-const logo = require('../../../assets/L_Azul.png'); 
-
 const routes = {
   'point Cohab/Santa Maria': {
     name: 'point Cohab/Santa Maria',
@@ -176,13 +174,9 @@ export default function TrackingScreen() {
   
   return (
     <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image source={logo} style={styles.logo} />
-      </View>
-
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={[styles.roundButton, { backgroundColor: buttonActive ? 'red' : 'green' }]}
+          style={[styles.roundButton, { backgroundColor: buttonActive ? 'red' : '#2196F3' }]}
           onPress={toggleTracking}
         >
           <Text style={styles.buttonText}>{buttonActive ? 'Desligar' : 'Ligar'}</Text>

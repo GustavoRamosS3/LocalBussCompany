@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center', // Centraliza verticalmente
-    alignItems: 'center', // Centraliza horizontalmente
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   roundButton: { 
-    width: 250,
-    height: 250,
+    width: 225,
+    height: 225,
     borderRadius: 125,
     alignItems: 'center',
     justifyContent: 'center',
