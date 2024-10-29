@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; // Importar o Tab
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Home from '../AppLBteste1/src/components/Home/Home.js';
-import ListarRotas from '../AppLBteste1/src/components/ListarRotas/ListarRotas.js';
-import TrackingScreen from '../AppLBteste1/src/components/Tracking/TrackingScreen.js';
-import LoginScreen from '../AppLBteste1/src/components/LoginScreen/LoginScreen.js';
-import WelcomeScreen from '../AppLBteste1/src/components/WelcomeScreen/WelcomeScreen.js';
+import Home from '../LocalBussCompany/src/components/Home/Home.js';
+import ListarRotas from '../LocalBussCompany/src/components/ListarRotas/ListarRotas.js';
+import TrackingScreen from '../LocalBussCompany/src/components/Tracking/TrackingScreen.js';
+import LoginScreen from '../LocalBussCompany/src/components/LoginScreen/LoginScreen.js';
+import WelcomeScreen from '../LocalBussCompany/src/components/WelcomeScreen/WelcomeScreen.js';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Certifique-se de ter a biblioteca instalada
 
 const Stack = createStackNavigator();

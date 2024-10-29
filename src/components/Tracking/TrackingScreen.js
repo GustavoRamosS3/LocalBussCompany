@@ -173,18 +173,21 @@ export default function TrackingScreen() {
     }
   };
 
+  
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
         <Image source={logo} style={styles.logo} />
       </View>
 
-      <TouchableOpacity
-        style={[styles.roundButton, { backgroundColor: buttonActive ? 'red' : 'green' }]}
-        onPress={toggleTracking}
-      >
-        <Text style={styles.buttonText}>{buttonActive ? 'Desligar' : 'Ligar'}</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.roundButton, { backgroundColor: buttonActive ? 'red' : 'green' }]}
+          onPress={toggleTracking}
+        >
+          <Text style={styles.buttonText}>{buttonActive ? 'Desligar' : 'Ligar'}</Text>
+        </TouchableOpacity>
+      </View>
 
       <Modal
         animationType="slide"
@@ -225,4 +228,3 @@ export default function TrackingScreen() {
     </View>
   );
 }
-
