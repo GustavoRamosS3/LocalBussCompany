@@ -14,6 +14,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 30,
   },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center', 
+    alignItems: 'center', 
+  },
   buttonText: {
     color: 'white',
     fontSize: 16,

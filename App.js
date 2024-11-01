@@ -10,18 +10,19 @@ import LoginScreen from '../LocalBussCompany/src/components/LoginScreen/LoginScr
 import WelcomeScreen from '../LocalBussCompany/src/components/WelcomeScreen/WelcomeScreen.js';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Certifique-se de ter a biblioteca instalada
 
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator(); // Criar o Tab Navigator
 
 const MainTabs = () => (
   <Tab.Navigator
-    initialRouteName="Gravar Rota"
+    initialRouteName="Rastreamento"
     screenOptions={({ route }) => ({
       tabBarIcon: ({ color, size }) => {
         let iconName;
         switch (route.name) {
           case 'Gravar Rota':
-            iconName = 'home';
+            iconName = 'radio-button-checked';
             break;
           case 'ListarRotas':
             iconName = 'list';
@@ -34,13 +35,13 @@ const MainTabs = () => (
         }
         return <Icon name={iconName} size={size} color={color} />;
       },
-      tabBarActiveTintColor: 'blue',
+      tabBarActiveTintColor: '#2196F3',
       tabBarInactiveTintColor: 'gray',
     })}
   >
-    <Tab.Screen name="Rastreamento" component={TrackingScreen} />
-    <Tab.Screen name="Gravar Rota" component={Home} />
-    <Tab.Screen name="ListarRotas" component={ListarRotas} />
+    <Tab.Screen name="Rastreamento" component={TrackingScreen} options={{ headerShown: false }} />
+    <Tab.Screen name="Gravar Rota" component={Home} options={{ headerShown: false }} />
+    <Tab.Screen name="ListarRotas" component={ListarRotas} options={{ headerShown: false }} />
   </Tab.Navigator>
 );
 
@@ -89,9 +90,7 @@ export default function App() {
           )}
         </Stack.Screen>
         <Stack.Screen name="Home" options={{ headerShown: false }}>
-          {props => (
-            <MainTabs />
-          )}
+          {() => <MainTabs />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

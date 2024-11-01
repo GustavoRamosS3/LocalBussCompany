@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     timer: {
       fontSize: 48,
       marginBottom: 20,
-      color: '#0056b3', // Cor do timer
+      color: '#2e7fed', // Cor do timer
       marginTop: -40,
     },
     buttonContainer: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
       marginBottom: 20,
     },
     button: {
-      backgroundColor: '#0056b3', // Cor de fundo do botão
+      backgroundColor: '#2e7fed', // Cor de fundo do botão
       borderRadius: 30, // Bordas arredondadas
       paddingVertical: 15, // Espaçamento vertical
       paddingHorizontal: 25, // Espaçamento horizontal
