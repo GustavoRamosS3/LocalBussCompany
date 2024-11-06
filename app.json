@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "LocalBuss",
-    "slug": "LocalBuss",
+    "name": "localbuss",
+    "slug": "localbuss",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,10 +18,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.gustagol.localbuss"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6ccd3283-fadf-42eb-bbca-44910efd7466"
+      }
+    },
+    "owner": "gustagol"
   }
 }
